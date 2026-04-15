@@ -1,20 +1,13 @@
 import k from "../main";
 
-export default function sc01() {
+export default function sc02() {
+
   k.setGravity(1200);
 
   const player = k.add([
-k.polygon([
-  k.vec2(5, 15),
-  k.vec2(-20, -10),
-  k.vec2(-15, -20),
-  k.vec2(5, -15),
-  k.vec2(15, -20),
-  k.vec2(-20, -10),
-]),
-
-    k.pos(300, 300),
-    k.color(k.RED),
+    k.circle(25),
+    k.pos(300, 250),
+    k.color(k.BLACK),
     k.body({ stickToPlatform: false }),
     k.area({ friction: 0 }),
     "player",
@@ -25,12 +18,12 @@ k.polygon([
   });
 
   k.add([
-    k.rect(290, 20),
-    k.pos(0, 300),
+    k.rect(270, 20),
+    k.pos(0, 200),
     k.color(k.BLUE),
     k.body({ isStatic: true }),
     k.area({ friction: 0 }),
-    k.move(k.LEFT, 300),
+    k.move(k.LEFT, 500),
     "platform",
   ]);
 
@@ -41,12 +34,12 @@ k.polygon([
 
   function spawn() {
     k.add([
-      k.rect(290, 20),
-      k.pos(560 + k.rand(-100, 100), 300),
+      k.rect(270, 20),
+      k.pos(560 + k.rand(-100, 100), 250),
       k.color(k.BLUE),
       k.area(),
       k.body({ isStatic: true }),
-      k.move(k.LEFT, 300),
+      k.move(k.LEFT, 500),
       "platform",
     ]);
   }
@@ -84,12 +77,12 @@ k.polygon([
     k.destroyAll("platform");
     k.destroyAll("player");
     k.add([
-      k.text("Level 2 erreicht\n\nDoppelklick auf Leertaste"),
+      k.text("Level 3 erreicht\n\nDoppelklick auf Leertaste"),
       k.pos(k.width() / 2, k.height() / 2),
       k.anchor("center"),
     ]);
     k.onKeyPress("space", () => {
-      k.go("level-02");
+      k.go("level-03");
     });
   });
 }
