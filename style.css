@@ -20,6 +20,85 @@ main {
 
 canvas {
     border: 1px solid black;
-    height: 480px;
-    width: 640px;
+    height: 520px;
+    width: 860px;
+}
+h1 {
+  color: rgb(153, 99, 107);
+}
+h1 {
+  color: rgb(115, 70, 77);
+  margin-left: 10px;
+}
+
+body.info {
+
+  background-color: rgb(223, 176, 195);
+
+  font-family: Arial, sans-serif;
+
+  padding: 30px;
+
+}
+
+
+body.info h1 {
+
+  color: rgb(115, 70, 77);
+
+}
+body.info h2 {
+
+  color: rgb(140, 80, 100);
+
+  margin-top: 20px;
+
+}
+
+/* Text */
+body.info p {
+
+  font-size: 16px;
+
+}
+
+/* Tabelle */
+body.info table {
+
+  border-collapse: collapse;
+
+  margin-top: 10px;
+
+}
+body.info th, body.info td {
+
+  border: 1px solid black;
+
+  padding: 8px 12px;
+
+}
+body.info th {
+
+  background-color: rgb(200, 140, 160);
+
+}
+
+/* Button */
+body.info button {
+
+  background-color: rgb(115, 70, 77);
+
+  color: white;
+
+  border: none;
+
+  padding: 10px 15px;
+
+  cursor: pointer;
+
+}
+body.info button:hover {
+
+  background-color: rgb(90, 50, 60);
+
 }

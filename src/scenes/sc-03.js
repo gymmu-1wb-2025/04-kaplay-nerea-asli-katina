@@ -1,6 +1,7 @@
 import k from "../main";
 
-export default function sc01() {
+export default function sc02() {
+
   k.setGravity(1200);
   const player = k.add([
   k.polygon([
@@ -22,7 +23,7 @@ export default function sc01() {
 ]);
 
   player.onKeyPress("space", () => {
-    player.jump();
+    player.jump(300);
   });
 
   k.add([
@@ -31,12 +32,25 @@ export default function sc01() {
     k.color(255, 255, 255),
     k.body({ isStatic: true }),
     k.area({ friction: 0 }),
-    k.move(k.LEFT, 300),
+    k.move(k.LEFT, 400),
     "platform",
   ]);
+  k.add([
+    k.rect (200, 20),
+    k.pos (80, 300),
+    k.color (255, 0, 0),
+    k.area (),
+
+    k.body ({ isStatic: true}),
+    "lava",
+  ]);
+  player.onCollide ("lava", () => {
+    k.go ("start");
+  });
+
 
   spawn();
-  const spawnLoop = k.loop(1.5, () => {
+  const spawnLoop = k.loop(2, () => {
     spawn();
   });
 
@@ -85,13 +99,13 @@ export default function sc01() {
     k.destroyAll("platform");
     k.destroyAll("player");
     k.add([
-      k.text("Level 2 erreicht\n\n klick Leertaste"),
+      k.text(" Du hast gewonnen! \n Zum erneut spielen\n lade neu"),
       k.pos(k.width() / 2, k.height() / 2),
       k.anchor("center"),
-      k.color(255, 80, 120)
+      k.color (255, 80, 120)
     ]);
     k.onKeyPress("space", () => {
-      k.go("level-02");
+      k.go("level-03");
     });
   });
 }
