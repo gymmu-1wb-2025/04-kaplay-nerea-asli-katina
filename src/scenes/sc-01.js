@@ -3,16 +3,16 @@ import k from "../main";
 export default function sc01() {
   k.setGravity(1200);
   const player = k.add([
-  k.polygon([
-    k.vec2(0, -10),
-    k.vec2(-15, -25),
+  k.polygon([   //Mit Fobizz-Assistent generiert. Prompt: Erstelle eine   Herzfigur mit möglichst einfachem Code. Zweck: Ein Polygon ist eine Form aus mehreren Punkten, die verbunden werden.
+    k.vec2(0, -10), // Jeder k.vec2 ist ein Punkt im 2D-Raum.
+    k.vec2(-15, -25), // x = links/rechts, y = oben/unten
     k.vec2(-25, -15),
     k.vec2(-25, 0),
     k.vec2(0, 25),
     k.vec2(25, 0),
     k.vec2(25, -15),
     k.vec2(15, -25),
-  ]),
+  ]),  // Die Punkte werden verbunden, oben entstehen zwei Rundungen, unten eine Spitze, das ergibt eine Herzform
 
   k.pos(300, 300),
   k.color(255, 80, 120),
@@ -54,9 +54,9 @@ export default function sc01() {
 
   let fertig = false;
 
-  player.onUpdate(() => {
+  player.onUpdate(() => { //Mit Fobizz-Assistent generiert, Prompt: Wie kann man das Spiel stoppen, wenn der Spieler sich aus dem Bildschirm bewegt? Zweck: überprüft den Spieler ständig
     if (fertig) return;
-    if (player.pos.y > k.height() || player.pos.y < 0) {
+    if (player.pos.y > k.height() || player.pos.y < 0) {  // > k.height() = unten rausgefallen, < 0 = oben rausgeflogen
       gameOver();
     }
   });
@@ -67,7 +67,7 @@ export default function sc01() {
     k.destroyAll("platform");
     k.destroyAll("player");
     k.add([
-      k.text("GAME OVER\n\ndrücke enter"),
+      k.text("GAME OVER\n\ndrücke Enter"),
       k.pos(k.width() / 2, k.height() / 2),
       k.anchor("center"),
       k.color(255, 80, 120),
@@ -85,7 +85,7 @@ export default function sc01() {
     k.destroyAll("platform");
     k.destroyAll("player");
     k.add([
-      k.text("Level 2 erreicht\n\n klick Leertaste"),
+      k.text("Level 2 erreicht\n\n Doppelklick auf Leertaste"),
       k.pos(k.width() / 2, k.height() / 2),
       k.anchor("center"),
       k.color(255, 80, 120)

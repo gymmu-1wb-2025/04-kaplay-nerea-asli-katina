@@ -23,7 +23,7 @@ export default function sc02() {
 ]);
 
   player.onKeyPress("space", () => {
-    player.jump(300);
+    player.jump();
   });
 
   k.add([
@@ -32,7 +32,7 @@ export default function sc02() {
     k.color(255, 255, 255),
     k.body({ isStatic: true }),
     k.area({ friction: 0 }),
-    k.move(k.LEFT, 400),
+    k.move(k.LEFT, 350),
     "platform",
   ]);
   k.add([
@@ -41,16 +41,16 @@ export default function sc02() {
     k.color (255, 0, 0),
     k.area (),
 
-    k.body ({ isStatic: true}),
+    k.body ({ isStatic: true}), //Mit Fobizz-Assistent generiert. Prompt: Wie könnte man ein Hinderniss hinzufügen, das den Spieler bei berührung zurück zum Start bringt? Zweck: Körper, der sich nicht bewegt
     "lava",
   ]);
-  player.onCollide ("lava", () => {
-    k.go ("start");
+  player.onCollide ("lava", () => { // Reagiert, wenn der Spieler die Lava berührt
+    k.go ("start"); // Wechselt zur Level 1 (Anfang)
   });
 
 
   spawn();
-  const spawnLoop = k.loop(2, () => {
+  const spawnLoop = k.loop(1.75, () => {
     spawn();
   });
 
@@ -61,7 +61,7 @@ export default function sc02() {
       k.color(255, 255, 255),
       k.area(),
       k.body({ isStatic: true }),
-      k.move(k.LEFT, 300),
+      k.move(k.LEFT, 350),
       "platform",
     ]);
   }
@@ -81,7 +81,7 @@ export default function sc02() {
     k.destroyAll("platform");
     k.destroyAll("player");
     k.add([
-      k.text("GAME OVER\n\ndrücke enter"),
+      k.text("GAME OVER\n\ndrücke Enter"),
       k.pos(k.width() / 2, k.height() / 2),
       k.anchor("center"),
       k.color(255, 80, 120),

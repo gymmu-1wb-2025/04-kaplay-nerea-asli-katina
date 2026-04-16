@@ -55,14 +55,14 @@ body.info h2 {
 
 }
 
-/* Text */
+
 body.info p {
 
   font-size: 16px;
 
 }
 
-/* Tabelle */
+
 body.info table {
 
   border-collapse: collapse;
@@ -83,7 +83,6 @@ body.info th {
 
 }
 
-/* Button */
 body.info button {
 
   background-color: rgb(115, 70, 77);
