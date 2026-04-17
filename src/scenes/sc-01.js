@@ -25,6 +25,44 @@ export default function sc01() {
     player.jump();
   });
 
+  let score = 0;
+const timerText = k.add([
+  k.text("Score: 0"),
+  k.pos(20, 20),
+  k.color(255, 80, 120),
+]);
+
+timerText.onUpdate(() => {
+  score = score+1
+  timerText.text = `Score: ${score}`
+})
+
+function spawnBackgroundHeart() {
+  const size = k.rand(5, 12); // zufällige Größe
+
+  k.add([
+    k.polygon([ //Wie unser Spielobjekt (Herz)
+      k.vec2(0, -5),
+      k.vec2(-7, -12),
+      k.vec2(-12, -5),
+      k.vec2(-12, 0),
+      k.vec2(0, 10),
+      k.vec2(12, 0),
+      k.vec2(12, -5),
+      k.vec2(7, -12),
+    ]),
+    k.pos(k.rand(0, k.width()), k.rand(0, k.height())),
+    k.scale(size / 10),
+    k.color(255, 150, 180),
+    k.move(k.LEFT, k.rand(20, 60)),
+    k.z(-1), // Mit Fobizz-Assistent generiert. Prompt: Wie kann man Objekte in den Hintergrund verschieben? Zweck: Objekt ist ganz hinten hinter Spieler & Plattformen
+    "bgHeart",
+  ]);
+}
+k.loop(0.5, () => {
+  spawnBackgroundHeart();
+});
+
   k.add([
     k.rect(315, 20),
     k.pos(0, 300),
