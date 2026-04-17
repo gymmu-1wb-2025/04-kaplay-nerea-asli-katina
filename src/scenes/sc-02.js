@@ -4,7 +4,7 @@ export default function sc02() {
 
   k.setGravity(1200);
   const player = k.add([
-  k.polygon([  //Gleich wie bei Level 1
+  k.polygon([  //In Level 1 erklärt
     k.vec2(0, -10),
     k.vec2(-15, -25),
     k.vec2(-25, -15),
@@ -33,6 +33,7 @@ const timerText = k.add([
 ]);
 
 timerText.onUpdate(() => {
+  if (fertig) return; //In Level 1 erklärt
   score = score+1
   timerText.text = `Score: ${score}`
 })
@@ -55,7 +56,7 @@ timerText.onUpdate(() => {
     k.scale(size / 10),
     k.color(255, 150, 180),
     k.move(k.LEFT, k.rand(20, 60)),
-    k.z(-1), // Wie in Level 1
+    k.z(-1), // In Level 1 erklärt
     "bgHeart",
   ]);
 }
@@ -75,14 +76,14 @@ k.loop(0.5, () => {
   ]);
 
   spawn();
-  const spawnLoop = k.loop(1.5, () => {
+  const spawnLoop = k.loop(1.5, () => { //In Level 1 erklärt
     spawn();
   });
 
   function spawn() {
     k.add([
       k.rect(315, 20),
-      k.pos(560 + k.rand(-100, 100), 300),
+      k.pos(560 + k.rand(-100, 100), 300), //In Level 1 erklärt
       k.color(255, 255, 255),
       k.area(),
       k.body({ isStatic: true }),
@@ -91,16 +92,16 @@ k.loop(0.5, () => {
     ]);
   }
 
-  let fertig = false;
+  let fertig = false; //In Level 1 erklärt
 
-  player.onUpdate(() => {  //Gleich wie bei Level 1
+  player.onUpdate(() => {  //In Level 1 erklärt
     if (fertig) return;
     if (player.pos.y > k.height() || player.pos.y < 0) {
       gameOver();
     }
   });
 
-  function gameOver() {
+  function gameOver() { //In Level 1 erklärt
     fertig = true;
     spawnLoop.cancel();
     k.destroyAll("platform");
@@ -112,13 +113,13 @@ k.loop(0.5, () => {
       k.color(255, 80, 120),
       "gameOverText",
     ]);
-    k.onKeyPress("enter", () => {
+    k.onKeyPress("enter", () => { //In Level 1 erklärt
       k.destroyAll("gameOverText");
       location.reload();
     });
   }
 
-  k.wait(30, () => {
+  k.wait(30, () => { // 30 Sekunden warten
     fertig = true;
     spawnLoop.cancel();
     k.destroyAll("platform");
@@ -129,7 +130,7 @@ k.loop(0.5, () => {
       k.anchor("center"),
       k.color (255, 80, 120)
     ]);
-    k.onKeyPress("space", () => {
+    k.onKeyPress("space", () => { //In Level 1 erklärt
       k.go("level-03");
     });
   });

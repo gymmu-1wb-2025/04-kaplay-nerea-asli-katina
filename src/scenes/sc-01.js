@@ -33,8 +33,9 @@ const timerText = k.add([
 ]);
 
 timerText.onUpdate(() => {
-  score = score+1
-  timerText.text = `Score: ${score}`
+  if (fertig) return; // Wenn fertig gleich true ist, dann wird die Funktion beendet und somit der Score beendet.
+  score = score+1 //Score wird um 1 erhäht
+  timerText.text = `Score: ${score}` // Zeigt den neuen Score
 })
 
 function spawnBackgroundHeart() {
@@ -74,14 +75,14 @@ k.loop(0.5, () => {
   ]);
 
   spawn();
-  const spawnLoop = k.loop(1.5, () => {
+  const spawnLoop = k.loop(1.5, () => { //Jede 1.5 Sekunden wird ein neues Objekt gespawnt.
     spawn();
   });
 
   function spawn() {
     k.add([
       k.rect(315, 20),
-      k.pos(560 + k.rand(-100, 100), 300),
+      k.pos(560 + k.rand(-100, 100), 300), //Dadurch werden Plattformen random gespawnt (Abstände)
       k.color(255, 255, 255),
       k.area(),
       k.body({ isStatic: true }),
@@ -90,7 +91,7 @@ k.loop(0.5, () => {
     ]);
   }
 
-  let fertig = false;
+  let fertig = false; //Wenn nicht fertig, läuft noch
 
   player.onUpdate(() => { //Mit Fobizz-Assistent generiert, Prompt: Wie kann man das Spiel stoppen, wenn der Spieler sich aus dem Bildschirm bewegt? Zweck: überprüft den Spieler ständig
     if (fertig) return;
@@ -100,10 +101,10 @@ k.loop(0.5, () => {
   });
 
   function gameOver() {
-    fertig = true;
-    spawnLoop.cancel();
-    k.destroyAll("platform");
-    k.destroyAll("player");
+    fertig = true;  //Wenn  Spiel fertig, Gameover/Level geschafft
+    spawnLoop.cancel(); //Stoppt spawnen von neuen Plattformen
+    k.destroyAll("platform"); //Löscht alle Plattformen
+    k.destroyAll("player"); //Löscht den Spieler
     k.add([
       k.text("GAME OVER\n\ndrücke Enter"),
       k.pos(k.width() / 2, k.height() / 2),
@@ -111,13 +112,13 @@ k.loop(0.5, () => {
       k.color(255, 80, 120),
       "gameOverText",
     ]);
-    k.onKeyPress("enter", () => {
-      k.destroyAll("gameOverText");
-      location.reload();
+    k.onKeyPress("enter", () => { //Wartet, bis Enter gedrückt wird
+      k.destroyAll("gameOverText"); //Löscht den Gameover text
+      location.reload(); //Spiel startet neu (von Anfang)
     });
   }
 
-  k.wait(30, () => {
+ k.wait(30, () => { //30 Sekunden warten
     fertig = true;
     spawnLoop.cancel();
     k.destroyAll("platform");
@@ -128,8 +129,8 @@ k.loop(0.5, () => {
       k.anchor("center"),
       k.color(255, 80, 120)
     ]);
-    k.onKeyPress("space", () => {
-      k.go("level-02");
+    k.onKeyPress("space", () => { //Wartet, das Leertaste gedrückt wird.
+      k.go("level-02"); //Startet level 2
     });
   });
 }
